@@ -1,0 +1,26 @@
+mode: deployment
+
+replicaCount: 1
+
+presets:
+  # enables the k8sclusterreceiver and adds it to the metrics pipelines
+  clusterMetrics:
+    enabled: true
+  # enables the k8sobjectsreceiver to collect events only and adds it to the logs pipelines
+  kubernetesEvents:
+    enabled: true
+
+config:
+  exporters:
+    otlphttp:
+      endpoint: "http://openobserve.openobserve.svc.cluster.local:5080/api/default"
+      headers:
+        Authorization: Basic cm9vdEBleGFtcGxlLmNvbTpDb21wbGV4cGFzcyMxMjMK
+        stream-name: default
+
+  service:
+    pipelines:
+      metrics:
+        exporters: [ otlphttp ]
+      logs:
+        exporters: [ otlphttp ]    

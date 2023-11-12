@@ -10,18 +10,18 @@ presets:
   # Enables the filelogreceiver and adds it to the logs pipelines
   logsCollection:
     enabled: true
-## The chart only includes the loggingexporter by default
-## If you want to send your data somewhere you need to
-## configure an exporter, such as the otlpexporter
-# config:
-# exporters:
-#   otlp:
-#     endpoint: "<SOME BACKEND>"
-# service:
-#   pipelines:
-#     traces:
-#       exporters: [ otlp ]
-#     metrics:
-#       exporters: [ otlp ]
-#     logs:
-#       exporters: [ otlp ]
+
+config:
+  exporters:
+    otlphttp:
+      endpoint: "http://openobserve.openobserve.svc.cluster.local:5080/api/default"
+      headers:
+        Authorization: Basic cm9vdEBleGFtcGxlLmNvbTpDb21wbGV4cGFzcyMxMjMK
+        stream-name: default
+
+  service:
+    pipelines:
+      metrics:
+        exporters: [ otlphttp ]
+      logs:
+        exporters: [ otlphttp ]
