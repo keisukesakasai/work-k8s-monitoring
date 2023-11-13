@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: merry-christmas-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: merry-christmas
+  template:
+    metadata:
+      labels:
+        app: merry-christmas
+    spec:
+      containers:
+      - name: merry-christmas-container
+        image: nginx

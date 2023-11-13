@@ -13,7 +13,7 @@ presets:
 config:
   exporters:
     otlphttp:
-      endpoint: "http://openobserve.openobserve.svc.cluster.local:5080/api/default"
+      endpoint: "http://openobserve:5080/api/default"
       headers:
         Authorization: Basic cm9vdEBleGFtcGxlLmNvbTpDb21wbGV4cGFzcyMxMjMK
         stream-name: default

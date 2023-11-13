@@ -1,0 +1,12 @@
+apiVersion: apiserver.config.k8s.io/v1beta1
+kind: TracingConfiguration
+endpoint: otel-collector-deploy-opentelemetry-collector:4317
+samplingRatePerMillion: 1000000
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+featureGates:
+  KubeletTracing: true
+tracing:
+  endpoint: otel-collector-deploy-opentelemetry-collector:4317
+  samplingRatePerMillion: 1000000 # 100%
