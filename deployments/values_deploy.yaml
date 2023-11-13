@@ -23,4 +23,4 @@ config:
       metrics:
         exporters: [ otlphttp ]
       logs:
-        exporters: [ otlphttp ]    
+        exporters: [ otlphttp ]
